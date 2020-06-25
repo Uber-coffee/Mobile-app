@@ -4,20 +4,4 @@
     <!-- background color -->
     <item android:drawable="@color/colorBackground" />
 
-    <!-- item for logo -->
-    <item
-        android:bottom="150dp"
-        android:width="300dp"
-        android:height="230dp"
-        android:drawable="@drawable/dark_logo"
-        android:gravity="center" />
-
-    <!-- item for text -->
-    <item
-        android:top="180dp"
-        android:width="300dp"
-        android:height="40dp"
-        android:drawable="@drawable/text"
-        android:gravity="center"/>
-
 </layer-list>
