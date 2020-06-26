@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
-        android:text="Phone number is correct"
+        android:text="@string/phone_number_is_correct"
         android:textColor="@color/colorAccent"
         android:textSize="18dp"
 
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/enter_your_phone_number"
+        android:text="@string/enter_a_phone_number"
         android:textColor="@color/colorAccent"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
@@ -145,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
-        android:text="Phone number is incorrect"
+        android:text="@string/phone_number_is_incorrect"
         android:textColor="@color/colorAccent"
         android:textSize="18dp"
 
