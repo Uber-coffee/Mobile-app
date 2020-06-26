@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">UberCoffee</string>
     <string name="uber_coffee">Uber Coffee</string>
+    <string name="x_phone_number">X-(XXX)-XXX-XX-XX</string>
+    <string name="enter_botton">ENTER</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="by_using_this_application">By using this application, you agree to have your personal data stored and processed in Uber Coffee</string>
 </resources>
