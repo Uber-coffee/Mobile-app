@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     //check if input only contains digits
     public boolean allDigits(CharSequence sequence) {
-        for (int i = 0; i < sequence.length(); i++){
-            if (!Character.isDigit(sequence.charAt(i))){
+        for (int i = 0; i < sequence.length(); i++) {
+            if (!Character.isDigit(sequence.charAt(i))) {
                 return false;
             }
         }
@@ -40,60 +43,92 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvSuccess = (TextView) findViewById(R.id.text_correct);
-        ivSuccess = (ImageView) findViewById(R.id.image_success);
-        tvFail = (TextView) findViewById(R.id.text_incorrect);
-        ivFail = (ImageView) findViewById(R.id.image_fail);
-        editPhone = (EditText) findViewById(R.id.editTextPhone);
-        buttonEnter = (Button) findViewById(R.id.button);
-        checkBox = (CheckBox) findViewById(R.id.checkBox2);
+        tvSuccess = findViewById(R.id.text_correct);
+        ivSuccess = findViewById(R.id.image_success);
+        tvFail = findViewById(R.id.text_incorrect);
+        ivFail = findViewById(R.id.image_fail);
+        editPhone = findViewById(R.id.editTextPhone);
+        buttonEnter = findViewById(R.id.button);
+        checkBox = findViewById(R.id.checkBox2);
 
-
-        //initially there should be no messages on the screen
+        buttonEnter.setEnabled(false);
         tvSuccess.setVisibility(View.INVISIBLE);
         ivSuccess.setVisibility(View.INVISIBLE);
         tvFail.setVisibility(View.INVISIBLE);
         ivFail.setVisibility(View.INVISIBLE);
 
-
         //here we show a right message when it's needed
-        editPhone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        editPhone.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                CharSequence input = textView.getText();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
-                if (input.length() == 0){
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 0) {
                     //initially there should be no messages on the screen
                     tvSuccess.setVisibility(View.INVISIBLE);
                     ivSuccess.setVisibility(View.INVISIBLE);
                     tvFail.setVisibility(View.INVISIBLE);
                     ivFail.setVisibility(View.INVISIBLE);
-                } else if (input.charAt(0) != '+' || input.charAt(1) != '7'){
-                    //Phone number should start with '+'
-                    tvFail.setVisibility(View.VISIBLE);
-                    ivFail.setVisibility(View.VISIBLE);
-                } else if (input.length() == 12 && allDigits(input.subSequence(2, input.length()))) {
-                    tvFail.setVisibility(View.INVISIBLE);
-                    ivFail.setVisibility(View.INVISIBLE);
-                    tvSuccess.setVisibility(View.VISIBLE);
-                    ivSuccess.setVisibility(View.VISIBLE);
-                    phoneNumberIsCorrect = true;
+                } else {
+                    if (charSequence.charAt(0) != '+') {
+                        //Phone number should start with '+'
+                        //additional message for user could be added here
+                        phoneNumberIsCorrect = false;
+                    } else if (charSequence.length() == 12 && allDigits(charSequence.subSequence(1, charSequence.length()))) {
+                        phoneNumberIsCorrect = true;
+                    } else {
+                        //Phone number should consist of 11 digits
+                        //additional message for user could be added here
+                        phoneNumberIsCorrect = false;
+                    }
+
+                    if (phoneNumberIsCorrect) {
+                        tvFail.setVisibility(View.INVISIBLE);
+                        ivFail.setVisibility(View.INVISIBLE);
+                        tvSuccess.setVisibility(View.VISIBLE);
+                        ivSuccess.setVisibility(View.VISIBLE);
+                        if (checkBox.isChecked()) {
+                            buttonEnter.setEnabled(true);
+                        }
+
+                    } else {
+                        buttonEnter.setEnabled(false);
+                        tvFail.setVisibility(View.VISIBLE);
+                        ivFail.setVisibility(View.VISIBLE);
+                        tvSuccess.setVisibility(View.INVISIBLE);
+                        ivSuccess.setVisibility(View.INVISIBLE);
+                    }
+
                 }
-                return true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+
+        });
+
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBox.isChecked() && phoneNumberIsCorrect) {
+                    buttonEnter.setEnabled(true);
+                } else {
+                    buttonEnter.setEnabled(false);
+                }
             }
         });
 
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (phoneNumberIsCorrect && checkBox.isChecked()) {
-                    Intent smsActivityIntent = new Intent(MainActivity.this, SmsCodeActivity.class);
-                    startActivity(smsActivityIntent);
-                }
+                Intent smsActivityIntent = new Intent(MainActivity.this, SmsCodeActivity.class);
+                startActivity(smsActivityIntent);
             }
         });
-
-
 
 
     }
