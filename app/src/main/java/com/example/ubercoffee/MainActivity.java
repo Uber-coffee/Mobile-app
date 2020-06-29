@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -28,15 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     boolean phoneNumberIsCorrect = false;
 
-    //check if input only contains digits
-    public boolean allDigits(CharSequence sequence) {
-        for (int i = 0; i < sequence.length(); i++) {
-            if (!Character.isDigit(sequence.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         tvFail.setVisibility(View.INVISIBLE);
         ivFail.setVisibility(View.INVISIBLE);
 
+
         //here we show a right message when it's needed
         editPhone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -65,23 +58,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() == 0) {
+                String input = charSequence.toString();
+                //Log.d("input", input); - print input for debugging
+                if (!input.matches(".*\\d.*")) {
+                    //no digits - field is empty
                     //initially there should be no messages on the screen
                     tvSuccess.setVisibility(View.INVISIBLE);
                     ivSuccess.setVisibility(View.INVISIBLE);
                     tvFail.setVisibility(View.INVISIBLE);
                     ivFail.setVisibility(View.INVISIBLE);
                 } else {
-                    if (charSequence.charAt(0) != '+') {
-                        //Phone number should start with '+'
-                        //additional message for user could be added here
+                    if (input.contains("X")) {
+                        //no 'X' - full number was entered, else - not enough digits were entered
                         phoneNumberIsCorrect = false;
-                    } else if (charSequence.length() == 12 && allDigits(charSequence.subSequence(1, charSequence.length()))) {
-                        phoneNumberIsCorrect = true;
                     } else {
-                        //Phone number should consist of 11 digits
-                        //additional message for user could be added here
-                        phoneNumberIsCorrect = false;
+                        //full number was entered
+                        phoneNumberIsCorrect = true;
                     }
 
                     if (phoneNumberIsCorrect) {
@@ -100,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
                         tvSuccess.setVisibility(View.INVISIBLE);
                         ivSuccess.setVisibility(View.INVISIBLE);
                     }
-
                 }
             }
+
 
             @Override
             public void afterTextChanged(Editable editable) {

@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,17 +23,7 @@ public class SmsCodeActivity extends AppCompatActivity {
     ImageView ivFail;
     EditText editSmsCode;
     Button buttonEnter;
-    CheckBox checkBox;
 
-    //check if input only contains digits
-    public boolean allDigits(CharSequence sequence) {
-        for (int i = 0; i < sequence.length(); i++) {
-            if (!Character.isDigit(sequence.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +52,21 @@ public class SmsCodeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() == 0) {
+                String input = charSequence.toString();
+
+                if (!input.matches(".*\\d.*")) {
+                    //no digits - field is empty
                     //initially there should be no messages on the screen
                     tvSuccess.setVisibility(View.INVISIBLE);
                     ivSuccess.setVisibility(View.INVISIBLE);
                     tvFail.setVisibility(View.INVISIBLE);
                     ivFail.setVisibility(View.INVISIBLE);
                 } else {
-
-                    if (charSequence.length() == 4 && allDigits(charSequence)) {
+                    if (!input.contains("X")) {
+                        //4 digits were entered
                         codeIsCorrect = true;
                     } else {
+                        //less that 4 digits were entered
                         //Code should consist of 4 digits
                         //additional message for user could be added here
                         codeIsCorrect = false;
