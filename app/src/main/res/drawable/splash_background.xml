@@ -1,20 +1,7 @@
-
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:opacity="opaque">
 
-    <item
-        android:drawable="@color/colorBackground"/>
-
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/dark_logo"
-
-            />
-
-    </item>
-
+    <!-- background color -->
+    <item android:drawable="@color/colorBackground" />
 
 </layer-list>
