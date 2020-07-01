@@ -53,7 +53,7 @@
         android:background="@drawable/rounded_button"
 
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/enter_botton"
+        android:text="@string/enter_button"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -155,7 +155,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_autorization_failed_24"
+        app:srcCompat="@drawable/ic_authorization_failed_24"
         tools:ignore="contentDescription"
         tools:visibility="visible" />
 
@@ -170,7 +170,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_autorization_success_24"
+        app:srcCompat="@drawable/ic_authorization_success_24"
         tools:ignore="contentDescription"
         tools:visibility="invisible" />
 

@@ -2,13 +2,14 @@
     <string name="app_name">UberCoffee</string>
     <string name="uber_coffee">Uber Coffee</string>
     <string name="x_phone_number">XXXXXXXXXXX</string>
-    <string name="enter_botton">ENTER</string>
+    <string name="enter_button">ENTER</string>
     <string name="enter_a_phone_number">Enter a phone number</string>
-    <string name="by_using_this_application">By using this application, you agree to have your personal data stored and processed in Uber Coffee</string>
+    <string name="by_using_this_application">By using this application you agree to have your personal data stored and processed in Uber Coffee</string>
     <string name="phone_number_is_correct">Phone number is correct</string>
     <string name="phone_number_is_incorrect">Phone number is incorrect</string>
     <string name="enter_a_code_from_sms">Enter a code from SMS</string>
-    <string name="incorrect_pin_code">Incorrect pin code</string>
+    <string name="incorrect_pin_code">You entered a wrong code\nTry again in 1 minute</string>
     <string name="correct_pin_code">Correct pin code</string>
     <string name="x_sms_code">XXXX</string>
+    <string name="resend_code">RESEND CODE</string>
 </resources>

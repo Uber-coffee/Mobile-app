@@ -1,31 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:mask="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sms_code"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="142dp"
-        android:layout_height="45dp"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
-        android:text="@string/enter_botton"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_incorrect">
 
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/button"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="10dp"
+
+            android:background="@drawable/rounded_button"
+
+            android:enabled="false"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="@string/enter_button"
+
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/button_resend"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+
+            android:background="@drawable/rounded_button"
+            android:enabled="false"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+
+            android:text="@string/resend_code"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="255dp"
+        android:layout_height="254dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_incorrect"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:srcCompat="@drawable/dark_logo"
+        tools:ignore="contentDescription" />
+
+
+    <ImageView
+        android:id="@+id/image_fail"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/text_incorrect"
+        app:layout_constraintEnd_toStartOf="@+id/text_incorrect"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_incorrect"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@drawable/ic_authorization_failed_24"
+        tools:ignore="contentDescription"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_incorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incorrect_pin_code"
+        android:textAlignment="center"
+
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+        app:layout_constraintVertical_bias="0"
+        tools:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/enter_a_code_from_sms"
+        android:textColor="@color/colorAccent"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/uber_coffee"
+        android:textColor="@color/colorAccent"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0"
+        tools:ignore="contentDescription" />
+
+
+
 
     <br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/editTextPhone"
@@ -51,114 +158,6 @@
         app:layout_constraintVertical_bias="0.264"
         mask:allowed_chars="1234567890"
         mask:mask="#-#-#-#" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="255dp"
-        android:layout_height="254dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dark_logo"
-        tools:ignore="contentDescription" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/enter_a_code_from_sms"
-        android:textColor="@color/colorAccent"
-        android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.914" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/uber_coffee"
-        android:textColor="@color/colorAccent"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="contentDescription" />
-
-    <ImageView
-        android:id="@+id/image_fail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_incorrect"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_autorization_failed_24"
-        tools:ignore="contentDescription"
-        tools:visibility="visible" />
-
-    <ImageView
-        android:id="@+id/image_success"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_correct"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_autorization_success_24"
-        tools:ignore="contentDescription"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/text_correct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/correct_pin_code"
-        android:textColor="@color/colorAccent"
-
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/text_incorrect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/incorrect_pin_code"
-        android:textColor="@color/colorAccent"
-
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0"
-        tools:visibility="invisible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
