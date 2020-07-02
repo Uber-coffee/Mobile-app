@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SmsCodeActivity extends AppCompatActivity {
 
     boolean codeFormatIsCorrect = false;
-    boolean timerHasStarted = false;
+    boolean enterCanBeEnabled = true;
 
     TextView tvFail;
     EditText editSmsCode;
@@ -26,15 +26,13 @@ public class SmsCodeActivity extends AppCompatActivity {
     CountDownTimer cTimer = null;
 
     void startTimer() {
-        timerHasStarted = true;
         tvTimer.setVisibility(View.VISIBLE);
-        cTimer = new CountDownTimer(10000, 1000) {
+        cTimer = new CountDownTimer(60000, 1000) {
             public void onTick(long millisUntilFinished) {
                 tvTimer.setText(getResources().getString(R.string.timer_start_value, millisUntilFinished / 1000));
             }
 
             public void onFinish() {
-                timerHasStarted = false;
                 tvTimer.setVisibility(View.INVISIBLE);
                 buttonResendCode.setEnabled(true);
             }
@@ -69,8 +67,8 @@ public class SmsCodeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //enter button can't be enabled and error message shouldn't be shown when timer is running
-                if (!timerHasStarted) {
+                //enter button can't be enabled and error message shouldn't be shown before "RESEND CODE" button is clicked
+                if (enterCanBeEnabled) {
                     String input = charSequence.toString();
 
                     if (!input.contains("X")) {
@@ -102,6 +100,7 @@ public class SmsCodeActivity extends AppCompatActivity {
                     Intent shopsActivityIntent = new Intent(SmsCodeActivity.this, ListOfShopsActivity.class);
                     startActivity(shopsActivityIntent);
                 } else {
+                    enterCanBeEnabled = false;
                     buttonEnter.setEnabled(false);
                     tvFail.setVisibility(View.VISIBLE);
                     startTimer();
@@ -113,6 +112,7 @@ public class SmsCodeActivity extends AppCompatActivity {
         buttonResendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                enterCanBeEnabled = true;
                 editSmsCode.getText().clear();
                 buttonResendCode.setEnabled(false);
                 buttonEnter.setEnabled(true);
