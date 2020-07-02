@@ -15,7 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
+        android:drawableStart="@drawable/ic_authorization_success_24"
+        android:drawablePadding="10dp"
 
+        android:visibility="invisible"
         android:text="@string/phone_number_is_correct"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -32,7 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
+        android:drawableStart="@drawable/ic_authorization_failed_24"
+        android:drawablePadding="10dp"
 
+        android:visibility="invisible"
         android:text="@string/phone_number_is_incorrect"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -52,8 +58,10 @@
         android:layout_height="45dp"
         android:background="@drawable/rounded_button"
 
+        android:enabled="false"
+
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/enter_botton"
+        android:text="@string/enter_button"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -144,35 +152,8 @@
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintVertical_bias="0.1" />
 
-    <ImageView
-        android:id="@+id/image_fail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_incorrect"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_autorization_failed_24"
-        tools:ignore="contentDescription"
-        tools:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/image_success"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_correct"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_autorization_success_24"
-        tools:ignore="contentDescription"
-        tools:visibility="invisible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

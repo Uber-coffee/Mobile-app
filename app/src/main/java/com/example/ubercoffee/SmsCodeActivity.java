@@ -2,27 +2,49 @@ package com.example.ubercoffee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SmsCodeActivity extends AppCompatActivity {
 
-    boolean codeIsCorrect = false;
+    boolean codeFormatIsCorrect = false;
+    boolean enterCanBeEnabled = true;
 
-    TextView tvSuccess;
-    ImageView ivSuccess;
     TextView tvFail;
-    ImageView ivFail;
     EditText editSmsCode;
     Button buttonEnter;
+    Button buttonResendCode;
+    TextView tvTimer;
+
+    CountDownTimer cTimer = null;
+
+    void startTimer() {
+        tvTimer.setVisibility(View.VISIBLE);
+        cTimer = new CountDownTimer(60000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                tvTimer.setText(getResources().getString(R.string.timer_start_value, millisUntilFinished / 1000));
+            }
+
+            public void onFinish() {
+                tvTimer.setVisibility(View.INVISIBLE);
+                buttonResendCode.setEnabled(true);
+            }
+        };
+        cTimer.start();
+    }
+
+
+    public boolean codeIsAccepted(String input) {
+        String realCode = "1-1-1-1"; //TODO: should be changed to the actual code from SMS
+        return input.equals(realCode);
+    }
 
 
     @Override
@@ -30,18 +52,11 @@ public class SmsCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_code);
 
-        tvSuccess = findViewById(R.id.text_correct);
-        ivSuccess = findViewById(R.id.image_success);
         tvFail = findViewById(R.id.text_incorrect);
-        ivFail = findViewById(R.id.image_fail);
         editSmsCode = findViewById(R.id.editTextPhone);
         buttonEnter = findViewById(R.id.button);
-
-        buttonEnter.setEnabled(false);
-        tvSuccess.setVisibility(View.INVISIBLE);
-        ivSuccess.setVisibility(View.INVISIBLE);
-        tvFail.setVisibility(View.INVISIBLE);
-        ivFail.setVisibility(View.INVISIBLE);
+        buttonResendCode = findViewById(R.id.button_resend);
+        tvTimer = findViewById(R.id.timer);
 
 
         editSmsCode.addTextChangedListener(new TextWatcher() {
@@ -52,38 +67,22 @@ public class SmsCodeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String input = charSequence.toString();
+                //enter button can't be enabled and error message shouldn't be shown before "RESEND CODE" button is clicked
+                if (enterCanBeEnabled) {
+                    String input = charSequence.toString();
 
-                if (!input.matches(".*\\d.*")) {
-                    //no digits - field is empty
-                    //initially there should be no messages on the screen
-                    tvSuccess.setVisibility(View.INVISIBLE);
-                    ivSuccess.setVisibility(View.INVISIBLE);
-                    tvFail.setVisibility(View.INVISIBLE);
-                    ivFail.setVisibility(View.INVISIBLE);
-                } else {
                     if (!input.contains("X")) {
-                        //4 digits were entered
-                        codeIsCorrect = true;
+                        //all 4 digits were entered
+                        codeFormatIsCorrect = true;
                     } else {
                         //less that 4 digits were entered
-                        //Code should consist of 4 digits
-                        //additional message for user could be added here
-                        codeIsCorrect = false;
+                        codeFormatIsCorrect = false;
                     }
 
-                    if (codeIsCorrect) {
+                    if (codeFormatIsCorrect) {
                         buttonEnter.setEnabled(true);
-                        tvFail.setVisibility(View.INVISIBLE);
-                        ivFail.setVisibility(View.INVISIBLE);
-                        tvSuccess.setVisibility(View.VISIBLE);
-                        ivSuccess.setVisibility(View.VISIBLE);
                     } else {
                         buttonEnter.setEnabled(false);
-                        tvFail.setVisibility(View.VISIBLE);
-                        ivFail.setVisibility(View.VISIBLE);
-                        tvSuccess.setVisibility(View.INVISIBLE);
-                        ivSuccess.setVisibility(View.INVISIBLE);
                     }
                 }
             }
@@ -94,6 +93,32 @@ public class SmsCodeActivity extends AppCompatActivity {
         });
 
 
+        buttonEnter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (codeIsAccepted(editSmsCode.getText().toString())) {
+                    Intent shopsActivityIntent = new Intent(SmsCodeActivity.this, ListOfShopsActivity.class);
+                    startActivity(shopsActivityIntent);
+                } else {
+                    enterCanBeEnabled = false;
+                    buttonEnter.setEnabled(false);
+                    tvFail.setVisibility(View.VISIBLE);
+                    startTimer();
+                }
+
+            }
+        });
+
+        buttonResendCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enterCanBeEnabled = true;
+                editSmsCode.getText().clear();
+                buttonResendCode.setEnabled(false);
+                buttonEnter.setEnabled(true);
+                tvFail.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
 
