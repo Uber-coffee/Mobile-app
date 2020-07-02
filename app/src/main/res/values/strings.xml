@@ -12,4 +12,5 @@
     <string name="correct_pin_code">Correct pin code</string>
     <string name="x_sms_code">XXXX</string>
     <string name="resend_code">RESEND CODE</string>
+    <string name="timer_start_value">00:%02d</string>
 </resources>
