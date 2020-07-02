@@ -115,7 +115,6 @@ public class SmsCodeActivity extends AppCompatActivity {
                 enterCanBeEnabled = true;
                 editSmsCode.getText().clear();
                 buttonResendCode.setEnabled(false);
-                buttonEnter.setEnabled(true);
                 tvFail.setVisibility(View.INVISIBLE);
             }
         });
