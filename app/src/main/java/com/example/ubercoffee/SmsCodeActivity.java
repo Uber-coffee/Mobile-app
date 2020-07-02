@@ -28,7 +28,7 @@ public class SmsCodeActivity extends AppCompatActivity {
     void startTimer() {
         timerHasStarted = true;
         tvTimer.setVisibility(View.VISIBLE);
-        cTimer = new CountDownTimer(60000, 1000) {
+        cTimer = new CountDownTimer(10000, 1000) {
             public void onTick(long millisUntilFinished) {
                 tvTimer.setText(getResources().getString(R.string.timer_start_value, millisUntilFinished / 1000));
             }
