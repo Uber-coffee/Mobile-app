@@ -22,7 +22,14 @@ public class MainActivity extends AppCompatActivity {
     Button buttonEnter;
     CheckBox checkBox;
 
-    boolean phoneNumberIsCorrect = false;
+
+    public boolean isPhoneNumberCorrect(String input){
+        /*
+        input contains "X" - not enough digits were entered
+        input contains no "X" - full number was entered
+         */
+        return !input.contains("X");
+    }
 
 
     @Override
@@ -53,15 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     tvSuccess.setVisibility(View.INVISIBLE);
                     tvFail.setVisibility(View.INVISIBLE);
                 } else {
-                    if (input.contains("X")) {
-                        //no 'X' - full number was entered, else - not enough digits were entered
-                        phoneNumberIsCorrect = false;
-                    } else {
-                        //full number was entered
-                        phoneNumberIsCorrect = true;
-                    }
-
-                    if (phoneNumberIsCorrect) {
+                    if (isPhoneNumberCorrect(input)) {
                         tvFail.setVisibility(View.INVISIBLE);
                         tvSuccess.setVisibility(View.VISIBLE);
                         if (checkBox.isChecked()) {
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (checkBox.isChecked() && phoneNumberIsCorrect) {
+                if (checkBox.isChecked() && isPhoneNumberCorrect(editPhone.getText().toString())) {
                     buttonEnter.setEnabled(true);
                 } else {
                     buttonEnter.setEnabled(false);

@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SmsCodeActivity extends AppCompatActivity {
 
-    boolean codeFormatIsCorrect = false;
     boolean enterCanBeEnabled = true;
 
     TextView tvFail;
@@ -27,7 +26,7 @@ public class SmsCodeActivity extends AppCompatActivity {
 
     void startTimer() {
         tvTimer.setVisibility(View.VISIBLE);
-        cTimer = new CountDownTimer(60000, 1000) {
+        cTimer = new CountDownTimer(10000, 1000) {
             public void onTick(long millisUntilFinished) {
                 tvTimer.setText(getResources().getString(R.string.timer_start_value, millisUntilFinished / 1000));
             }
@@ -41,9 +40,17 @@ public class SmsCodeActivity extends AppCompatActivity {
     }
 
 
-    public boolean codeIsAccepted(String input) {
-        String realCode = "1-1-1-1"; //TODO: should be changed to the actual code from SMS
+    public boolean isCodeAccepted(String input, String realCode) {
+        //TODO: realCode = "1-1-1-1", should be changed to the actual code from SMS
         return input.equals(realCode);
+    }
+
+    public boolean isCodeFormatCorrect(String code) {
+        /*
+         input contains "X" - not enough digits were entered
+         input contains no "X" - full code was entered
+         */
+        return !code.contains("X");
     }
 
 
@@ -69,17 +76,7 @@ public class SmsCodeActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 //enter button can't be enabled and error message shouldn't be shown before "RESEND CODE" button is clicked
                 if (enterCanBeEnabled) {
-                    String input = charSequence.toString();
-
-                    if (!input.contains("X")) {
-                        //all 4 digits were entered
-                        codeFormatIsCorrect = true;
-                    } else {
-                        //less that 4 digits were entered
-                        codeFormatIsCorrect = false;
-                    }
-
-                    if (codeFormatIsCorrect) {
+                    if (isCodeFormatCorrect(charSequence.toString())) {
                         buttonEnter.setEnabled(true);
                     } else {
                         buttonEnter.setEnabled(false);
@@ -96,7 +93,7 @@ public class SmsCodeActivity extends AppCompatActivity {
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (codeIsAccepted(editSmsCode.getText().toString())) {
+                if (isCodeAccepted(editSmsCode.getText().toString(), "1-1-1-1")) { //TODO: insert the actual code from SMS to the "realCode"
                     Intent shopsActivityIntent = new Intent(SmsCodeActivity.this, ListOfShopsActivity.class);
                     startActivity(shopsActivityIntent);
                 } else {
