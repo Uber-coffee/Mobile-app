@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">UberCoffee</string>
-    <string name="uber_coffee">Uber Coffee</string>
+    <string name="app_name">Uber Coffee</string>
     <string name="x_phone_number">XXXXXXXXXXX</string>
     <string name="enter_button">ENTER</string>
     <string name="enter_a_phone_number">Enter a phone number</string>

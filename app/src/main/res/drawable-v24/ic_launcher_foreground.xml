@@ -5,8 +5,9 @@
     <!-- background color -->
     <item
         android:drawable="@drawable/dark_logo"
-        android:width="108dp"
-        android:height="90dp"
+        android:width="54dp"
+        android:height="45dp"
+        android:gravity="center"
         />
 
 </layer-list>
