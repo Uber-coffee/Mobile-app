@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "455689649424",
+    "firebase_url": "https://ubercoffee-fffd8.firebaseio.com",
+    "project_id": "ubercoffee-fffd8",
+    "storage_bucket": "ubercoffee-fffd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455689649424:android:b5b9ca72b31dba3d273995",
+        "android_client_info": {
+          "package_name": "com.example.ubercoffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455689649424-phm5amln46rn57gj16en45isbkd9c124.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ubercoffee",
+            "certificate_hash": "f05de94db111538a7fcea5d401d110f0879ba97d"
+          }
+        },
+        {
+          "client_id": "455689649424-v60n33noctl9bj2ca29sn4dk7kvhclaa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4Dp5RDHkgNUCsGWJLvDG4Fr7TZ56d8gM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455689649424-v60n33noctl9bj2ca29sn4dk7kvhclaa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
