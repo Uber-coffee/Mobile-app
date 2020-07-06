@@ -101,11 +101,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent smsActivityIntent = new Intent(MainActivity.this, SmsCodeActivity.class);
-                String phoneNoConvert = editPhone.getText().toString();
-                phoneNoConvert = phoneNoConvert.replaceAll("[\\(\\)]", "");
-                phoneNoConvert = phoneNoConvert.replaceAll("-", "");
-                smsActivityIntent.putExtra("phoneNo", phoneNoConvert);
-               // Log.d("Get", phoneNoConvert);
 
                 startActivity(smsActivityIntent);
             }
