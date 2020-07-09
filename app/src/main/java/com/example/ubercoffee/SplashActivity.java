@@ -4,6 +4,7 @@ package com.example.ubercoffee;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -18,6 +19,9 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        clearFilterFile();
+
         setContentView(R.layout.activity_splash);
         //animation start
         ImageView imgView=(ImageView)findViewById(R.id.imageview);
@@ -33,6 +37,12 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 3000);
+    }
+
+    void clearFilterFile(){
+        SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().apply();
     }
 
 }
