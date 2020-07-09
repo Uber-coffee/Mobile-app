@@ -10,4 +10,9 @@
         android:top="3dp" />
 
     <corners android:radius="20dp" />
+
+    <stroke
+        android:color="#000000"
+        android:width="3dp"
+        />
 </shape>
