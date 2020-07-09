@@ -43,10 +43,11 @@
 
         </activity>
 
+        <activity android:name=".MenuListActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".MenuFilterActivity"
             android:theme="@style/AppTheme.PopMe" />
-
-
 
         <meta-data
             android:name="preloaded_fonts"
