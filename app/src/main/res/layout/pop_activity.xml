@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pop_background"
+    tools:context="com.example.ubercoffee.Pop">
+
+    <LinearLayout
+        android:id="@+id/llmain"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/distance"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="26sp"
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/less_half"
+                android:layout_weight="1"
+                android:text="@string/up_to_0_5_km"
+                android:textColor="@color/colorBackground"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:alpha="0.7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button"/>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/less_km"
+                android:layout_weight="1"
+                android:text="@string/up_to_1_km"
+                android:textColor="@color/colorBackground"
+                android:textStyle="bold"
+                android:alpha="0.7"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button"/>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/less_km_and_half"
+                android:layout_weight="1"
+                android:text="@string/up_to_1_5_km"
+                android:alpha="0.7"
+                android:textColor="@color/colorBackground"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fullness"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="26sp"
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/green_fullness"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:textColor="@color/green"
+                android:text="✓"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:alpha="0.7"
+                android:background="@drawable/drawable_circle_green"
+                />
+
+            <Space
+                android:layout_weight="1.2"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/yellow_fullness"
+                android:layout_weight="1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="✓"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:alpha="0.7"
+                android:textColor="@color/yellow"
+                android:background="@drawable/drawable_circle_yellow"/>
+
+            <Space
+                android:layout_weight="1.2"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/red_fullness"
+                android:layout_weight="1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="✓"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="@color/red"
+                android:alpha="0.7"
+                android:background="@drawable/drawable_circle_red"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/enter"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="@string/accept"
+            android:textColor="@color/colorBackground"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <Space
+            android:layout_weight="1.9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/reset"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="@string/reset"
+            android:textColor="@color/colorBackground"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

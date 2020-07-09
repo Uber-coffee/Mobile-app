@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        card_view:cardBackgroundColor="@color/colorAccent"
+        card_view:cardCornerRadius="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cv"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="www"
+                android:textColor="@color/colorBackground"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fullness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1.15"
+                android:alpha="0.7"
+                android:background="@drawable/drawable_circle_green"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <Space
+                android:id="@+id/sp"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/fullness"/>
+
+            <ImageView
+                android:id="@+id/just_photo"
+                android:layout_width ="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/sp"/>
+
+            <TextView
+                android:id="@+id/adress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/black"
+                android:alpha="0.65"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:text="test"
+                android:gravity="right"
+                card_view:layout_constraintBottom_toBottomOf="@+id/just_photo"
+                card_view:layout_constraintEnd_toEndOf="@+id/just_photo" />
+
+            <Space
+                android:id="@+id/space"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                card_view:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/just_photo" />
+
+            <LinearLayout
+                android:padding="10dp"
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/space">
+
+                <TextView
+                    android:id="@+id/cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.12"
+                    android:background="@drawable/rounded_textview_background"
+                    android:gravity="center"
+                    android:text="www"
+                    android:textStyle = "bold"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.12"
+                    android:background="@drawable/rounded_textview_background"
+                    android:gravity="center"
+                    android:textStyle = "bold"
+                    android:text="ccc"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:id="@+id/rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_textview_background"
+                    android:gravity="center" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
