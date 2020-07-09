@@ -61,37 +61,38 @@ public class MenuListActivity extends AppCompatActivity {
 
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.roboto_bold);
-        TypefaceSpan type = new TypefaceSpan(typeface);
+        //TypefaceSpan type = new TypefaceSpan(typeface);
 
         TextView tvAdress= (TextView) findViewById(R.id.adress);
         //передаем строкой адрес
         final SpannableString textAdress=  new SpannableString("Nevskiy Prospect, 2");
-        textAdress.setSpan( type, 0, textAdress.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+        //textAdress.setSpan( type, 0, textAdress.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+        //textAdress.se
         tvAdress.setText(textAdress);
 
         TextView tvB1= (TextView) findViewById(R.id.b1);
         //передаем строкой адрес
         SpannableString textB1=  new SpannableString("from " + price + "₽");
-        textB1.setSpan( type, 0, textB1.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+        //textB1.setSpan( type, 0, textB1.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvB1.setText(textB1);
 
         TextView tvB3= (TextView) findViewById(R.id.b3);
         //передаем строкой адрес
         SpannableString textB3=  new SpannableString("> " + time + " minutes");
-        textB3.setSpan( type, 0, textB3.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+        //textB3.setSpan( type, 0, textB3.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvB3.setText(textB3);
 
         TextView tvB4= (TextView) findViewById(R.id.b4);
         //передаем строкой адрес
         SpannableString textB4=  new SpannableString(distance + " km");
-        textB4.setSpan( type, 0, textB4.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+        //textB4.setSpan( type, 0, textB4.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvB4.setText(textB4);
 
 
         TextView tvButton= (TextView) findViewById(R.id.textButton);
         //передаем строкой адрес
         final SpannableString textButton=  new SpannableString("Popular");
-        textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+        //textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvButton.setText(textButton);
 
 
@@ -131,11 +132,11 @@ public class MenuListActivity extends AppCompatActivity {
                 Context context = view.getContext();
 
                 Typeface typeface = ResourcesCompat.getFont(context, R.font.roboto_bold);
-                TypefaceSpan type = new TypefaceSpan(typeface);
+                //TypefaceSpan type = new TypefaceSpan(typeface);
 
                 TextView tvButton= (TextView) findViewById(R.id.textButton);
                 final SpannableString textButton=  new SpannableString("Popular");
-                textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+                //textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
                 tvButton.setText(textButton);
 
                 List<Drinkables> image_details = getListDataPopular();
@@ -162,11 +163,11 @@ public class MenuListActivity extends AppCompatActivity {
                 Context context = view.getContext();
 
                 Typeface typeface = ResourcesCompat.getFont(context, R.font.roboto_bold);
-                TypefaceSpan type = new TypefaceSpan(typeface);
+                //TypefaceSpan type = new TypefaceSpan(typeface);
 
                 TextView tvButton= (TextView) findViewById(R.id.textButton);
                 final SpannableString textButton=  new SpannableString("Coffee");
-                textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+                //textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
                 tvButton.setText(textButton);
 
 
@@ -195,11 +196,11 @@ public class MenuListActivity extends AppCompatActivity {
                 Context context = view.getContext();
 
                 Typeface typeface = ResourcesCompat.getFont(context, R.font.roboto_bold);
-                TypefaceSpan type = new TypefaceSpan(typeface);
+                //TypefaceSpan type = new TypefaceSpan(typeface);
 
                 TextView tvButton= (TextView) findViewById(R.id.textButton);
                 final SpannableString textButton=  new SpannableString("Tea");
-                textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
+                //textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
                 tvButton.setText(textButton);
 
 
