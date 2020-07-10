@@ -25,6 +25,7 @@ import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ListOfShopsActivity extends AppCompatActivity {
@@ -45,8 +46,8 @@ public class ListOfShopsActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
         if(sharedPreferences.contains("Distance")){
-            if(sharedPreferences.getInt("Distance", 100) != 0 || sharedPreferences.getInt("Fullness", 100) != 0){
-                apply_filters(sharedPreferences.getInt("Distance", 100), sharedPreferences.getInt("Fullness", 100));
+            if(sharedPreferences.getInt("Distance", 100) != 0 || sharedPreferences.getInt("Fullness_green", 100) != 0 || sharedPreferences.getInt("Fullness_red", 100) != 0 || sharedPreferences.getInt("Fullness_yellow", 100) != 0){
+                apply_filters(sharedPreferences.getInt("Distance", 100), sharedPreferences.getInt("Fullness_green", 100), sharedPreferences.getInt("Fullness_red", 100), sharedPreferences.getInt("Fullness_yellow", 100));
             }else{
                 coffeeMarkets = coffeeMarkets_copy;
             }
@@ -91,15 +92,17 @@ public class ListOfShopsActivity extends AppCompatActivity {
 
         String [] urls = getResources().getStringArray(R.array.images_references);
 
-        for(int i = 0; i < 5; i++){
-            CoffeeMarket coffeeMarket = CoffeeMarket.initMarket(new String("test_address" + (i + 1)),100, 0.5*(i+1), urls[i], randVal());
+        for(int i = 0; i < 10; i++){
+            DecimalFormat decimalFormat = new DecimalFormat("#.#");
+            double dist = Double.parseDouble(decimalFormat.format(0.2*(i+1)));
+            CoffeeMarket coffeeMarket = CoffeeMarket.initMarket(new String("test_address" + (i + 1)),100, dist, urls[i], randVal());
             coffeeMarkets.add(coffeeMarket);
         }
 
         return coffeeMarkets;
     }
 
-    private void apply_filters(int distance, int fullness){
+    private void apply_filters(int distance, int fullness_green, int fullness_red, int fullness_yellow){
         ArrayList<CoffeeMarket> sorted_markets = new ArrayList<>();
 
         double dist = distance*0.5;
@@ -112,16 +115,16 @@ public class ListOfShopsActivity extends AppCompatActivity {
             }
         }
 
-        if(fullness != 0){
+        if(fullness_green != 0 || fullness_red != 0 || fullness_yellow != 0){
             if(sorted_markets.size() != 0){
                 for(int i = 0; i < sorted_markets.size(); i++){
-                    if(sorted_markets.get(i).retFullness() == fullness){
+                    if(sorted_markets.get(i).retFullness() == fullness_green || sorted_markets.get(i).retFullness() == fullness_red || sorted_markets.get(i).retFullness() == fullness_yellow){
                         coffeeMarkets.add(sorted_markets.get(i));
                     }
                 }
             }else{
                 for(int i = 0; i < coffeeMarkets_copy.size(); i++){
-                    if(coffeeMarkets_copy.get(i).retFullness() == fullness){
+                    if(coffeeMarkets_copy.get(i).retFullness() == fullness_green || coffeeMarkets_copy.get(i).retFullness() == fullness_red || coffeeMarkets_copy.get(i).retFullness() == fullness_yellow){
                         coffeeMarkets.add(coffeeMarkets_copy.get(i));
                     }
                 }
@@ -174,7 +177,7 @@ public class ListOfShopsActivity extends AppCompatActivity {
             distance.setText(String.valueOf(coffeeMarkets.get(position).retDistance()) + " km");
 
             TextView cost = (TextView) convertView.findViewById(R.id.cost);
-            cost.setText("from " + coffeeMarkets.get(position).retCost());
+            cost.setText("from " + coffeeMarkets.get(position).retCost() + " ₽");
 
             TextView time = (TextView) convertView.findViewById(R.id.time);
             time.setText("> 6 min");
