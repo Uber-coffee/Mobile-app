@@ -93,8 +93,10 @@ public class ListOfShopsActivity extends AppCompatActivity {
         String [] urls = getResources().getStringArray(R.array.images_references);
 
         for(int i = 0; i < 10; i++){
-            DecimalFormat decimalFormat = new DecimalFormat("#.#");
-            double dist = Double.parseDouble(decimalFormat.format(0.2*(i+1)));
+            double dist = 0.2*(i+1);
+            dist*=10;
+            int res = (int) Math.round(dist);
+            dist = (double)res/10;
             CoffeeMarket coffeeMarket = CoffeeMarket.initMarket(new String("test_address" + (i + 1)),100, dist, urls[i], randVal());
             coffeeMarkets.add(coffeeMarket);
         }
