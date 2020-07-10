@@ -11,4 +11,5 @@
     <color name="white">#ffffff</color>
     <color name="back">#00000000</color>
     <color name="foreground">#99000000</color>
+    <color name="filterBackground">#00000000</color>
 </resources>
