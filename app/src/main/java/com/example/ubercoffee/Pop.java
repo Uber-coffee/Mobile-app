@@ -1,27 +1,14 @@
 package com.example.ubercoffee;
 
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
-import android.view.OrientationEventListener;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TextView;
 
 
 public class Pop extends Activity implements View.OnClickListener {
@@ -39,7 +26,11 @@ public class Pop extends Activity implements View.OnClickListener {
     Button reset_filter;
 
     private int distance_filter = 0;
-    private int fullness_filter = 0;
+    private int fullness_filter_green = 0;
+    private int fullness_filter_yellow = 0;
+    private int fullness_filter_red = 0;
+
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +57,13 @@ public class Pop extends Activity implements View.OnClickListener {
 
         getWindow().setAttributes(layoutParams);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
 
         if(sharedPreferences.contains("Distance")) {
             distance_filter = sharedPreferences.getInt("Distance", 100);
-            fullness_filter = sharedPreferences.getInt("Fullness",100);
+            fullness_filter_green = sharedPreferences.getInt("Fullness_green",100);
+            fullness_filter_yellow = sharedPreferences.getInt("Fullness_yellow",100);
+            fullness_filter_red = sharedPreferences.getInt("Fullness_red",100);
         }
 
         apply_filter = (Button) findViewById(R.id.enter);
@@ -97,26 +90,24 @@ public class Pop extends Activity implements View.OnClickListener {
 
         switch (distance_filter){
             case 1:
-                small_distance.performClick();
+                small_distance.setAlpha(1f);
                 break;
             case 2:
-                middle_distance.performClick();
+                middle_distance.setAlpha(1f);
                 break;
             case 3:
-                big_distance.performClick();
+                big_distance.setAlpha(1f);
                 break;
         }
 
-        switch (fullness_filter){
-            case 1:
-                green_fullness.performClick();
-                break;
-            case 2:
-                yellow_fullness.performClick();
-                break;
-            case 3:
-                red_fullness.performClick();
-                break;
+        if(fullness_filter_green != 0) {
+            green_fullness.setTextColor(getColor(R.color.white));
+        }
+        if( fullness_filter_yellow != 0) {
+            yellow_fullness.setTextColor(getColor(R.color.white));
+        }
+        if(fullness_filter_red != 0) {
+            red_fullness.setTextColor(getColor(R.color.white));
         }
 
     }
@@ -126,47 +117,73 @@ public class Pop extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.less_half:
-                small_distance.setAlpha(1f);
-                middle_distance.setAlpha(0.7f);
-                big_distance.setAlpha(0.7f);
-                distance_filter = 1;
+                if(distance_filter == 1){
+                    small_distance.setAlpha(0.7f);
+                    distance_filter = 0;
+                }else {
+                    small_distance.setAlpha(1f);
+                    middle_distance.setAlpha(0.7f);
+                    big_distance.setAlpha(0.7f);
+                    distance_filter = 1;
+                }
                 break;
             case R.id.less_km:
-                small_distance.setAlpha(0.7f);
-                middle_distance.setAlpha(1f);
-                big_distance.setAlpha(0.7f);
-                distance_filter = 2;
+                if(distance_filter == 2){
+                    middle_distance.setAlpha(0.7f);
+                    distance_filter = 0;
+                }else {
+                    small_distance.setAlpha(0.7f);
+                    middle_distance.setAlpha(1f);
+                    big_distance.setAlpha(0.7f);
+                    distance_filter = 2;
+                }
                 break;
             case R.id.less_km_and_half:
-                small_distance.setAlpha(0.7f);
-                middle_distance.setAlpha(0.7f);
-                big_distance.setAlpha(1f);
-                distance_filter = 3;
+                if(distance_filter == 3){
+                    big_distance.setAlpha(0.7f);
+                    distance_filter = 0;
+                }else {
+                    small_distance.setAlpha(0.7f);
+                    middle_distance.setAlpha(0.7f);
+                    big_distance.setAlpha(1f);
+                    distance_filter = 3;
+                }
                 break;
             case R.id.red_fullness:
-                red_fullness.setTextColor(getColor(R.color.white));
-                green_fullness.setTextColor(getColor(R.color.green));
-                yellow_fullness.setTextColor(getColor(R.color.yellow));
-                fullness_filter = 3;
+                if(fullness_filter_red == 3){
+                    red_fullness.setTextColor(getColor(R.color.red));
+                    fullness_filter_red = 0;
+                }else {
+                    red_fullness.setTextColor(getColor(R.color.white));
+                    fullness_filter_red = 3;
+                }
                 break;
             case R.id.yellow_fullness:
-                red_fullness.setTextColor(getColor(R.color.red));
-                green_fullness.setTextColor(getColor(R.color.green));
-                yellow_fullness.setTextColor(getColor(R.color.white));
-                fullness_filter = 2;
+                if( fullness_filter_yellow == 2){
+                    yellow_fullness.setTextColor(getColor(R.color.yellow));
+                    fullness_filter_yellow = 0;
+                }else {
+                    yellow_fullness.setTextColor(getColor(R.color.white));
+                    fullness_filter_yellow = 2;
+                }
                 break;
             case  R.id.green_fullness:
-                red_fullness.setTextColor(getColor(R.color.red));
-                green_fullness.setTextColor(getColor(R.color.white));
-                yellow_fullness.setTextColor(getColor(R.color.yellow));
-                fullness_filter = 1;
+                if(fullness_filter_green == 1){
+                    green_fullness.setTextColor(getColor(R.color.green));
+                    fullness_filter_green = 0;
+                }else {
+                    green_fullness.setTextColor(getColor(R.color.white));
+                    fullness_filter_green = 1;
+                }
                 break;
             case R.id.enter:
                 SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear().apply();
                 editor.putInt("Distance", distance_filter);
-                editor.putInt("Fullness", fullness_filter);
+                editor.putInt("Fullness_green", fullness_filter_green);
+                editor.putInt("Fullness_yellow", fullness_filter_yellow);
+                editor.putInt("Fullness_red", fullness_filter_red);
                 editor.apply();
                 setResult(RESULT_OK);
                 finish();
@@ -178,7 +195,7 @@ public class Pop extends Activity implements View.OnClickListener {
                 red_fullness.setTextColor(getColor(R.color.red));
                 green_fullness.setTextColor(getColor(R.color.green));
                 yellow_fullness.setTextColor(getColor(R.color.yellow));
-                distance_filter = fullness_filter = 0;
+                distance_filter = fullness_filter_green = fullness_filter_red = fullness_filter_yellow = 0;
                 SharedPreferences sharedPreferences1 = getSharedPreferences("for.filters", MODE_PRIVATE);
                 SharedPreferences.Editor editor1 = sharedPreferences1.edit();
                 editor1.clear().apply();
