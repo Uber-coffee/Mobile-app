@@ -6,6 +6,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -35,17 +36,14 @@ public class MenuListActivity extends AppCompatActivity {
     double price = 75;
     double time = 10;
     double distance = 0.5;
+    int sizeDrinkable = -1;
 
 
     GridView listView;
     ArrayAdapter<String> adapter;
 
-    // определяем массив типа String
-    final String[] catnames = new String[] { "Рыжик", "Барсик", "Мурзик",
-            "Мурка", "Васька", "Томасина", "Кристина", "Пушок", "Дымка",
-            "Кузя", "Китти", "Масяня", "Симба" };
-
     List<String> list = new ArrayList<>();
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -60,7 +58,7 @@ public class MenuListActivity extends AppCompatActivity {
         buttonFilters = findViewById(R.id.filters);
 
 
-        Typeface typeface = ResourcesCompat.getFont(this, R.font.roboto_bold);
+        //Typeface typeface = ResourcesCompat.getFont(this, R.font.roboto_bold);
         //TypefaceSpan type = new TypefaceSpan(typeface);
 
         TextView tvAdress= (TextView) findViewById(R.id.adress);
@@ -71,33 +69,33 @@ public class MenuListActivity extends AppCompatActivity {
         tvAdress.setText(textAdress);
 
         TextView tvB1= (TextView) findViewById(R.id.b1);
-        //передаем строкой адрес
+        //передаем строкой цену
         SpannableString textB1=  new SpannableString("from " + price + "₽");
         //textB1.setSpan( type, 0, textB1.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvB1.setText(textB1);
 
         TextView tvB3= (TextView) findViewById(R.id.b3);
-        //передаем строкой адрес
+        //передаем строкой количество минут
         SpannableString textB3=  new SpannableString("> " + time + " minutes");
         //textB3.setSpan( type, 0, textB3.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvB3.setText(textB3);
 
         TextView tvB4= (TextView) findViewById(R.id.b4);
-        //передаем строкой адрес
+        //передаем строкой расстояние
         SpannableString textB4=  new SpannableString(distance + " km");
         //textB4.setSpan( type, 0, textB4.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvB4.setText(textB4);
 
 
         TextView tvButton= (TextView) findViewById(R.id.textButton);
-        //передаем строкой адрес
+        //передаем строкой в какой менюшке
         final SpannableString textButton=  new SpannableString("Popular");
         //textButton.setSpan( type, 0, textButton.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE );
         tvButton.setText(textButton);
 
 
 
-
+        //заполнение сетки данными (в нашем случае сначала популярными)
         List<Drinkables> image_details = getListDataPopular();
         final GridView gridView = (GridView) findViewById(R.id.gridList);
         gridView.setAdapter(new MenuAdapter(this, image_details));
@@ -119,8 +117,9 @@ public class MenuListActivity extends AppCompatActivity {
         buttonFilters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MenuFilterActivity.class);
-                startActivity(i);
+                Intent intent = new Intent(getApplicationContext(), MenuFilterActivity.class);
+                //intent.putExtra("sizeDrink", sizeDrinkable);
+                startActivity(intent);
             }
         });
 
@@ -232,7 +231,10 @@ public class MenuListActivity extends AppCompatActivity {
         size.add(0.2);
         size.add(0.4);
         size.add(0.5);
-        Drinkables Cappuccino = new Drinkables("Cappuccino", size, 120);
+        ArrayList<Double> size2 = new ArrayList<>();
+        size2.add(0.2);
+        size2.add(0.4);
+        Drinkables Cappuccino = new Drinkables("Cappuccino", size2, 120);
         Drinkables Latte = new Drinkables("Latte", size, 140);
         Drinkables Macchiato = new Drinkables("Macchiato", size, 230);
         Drinkables Expresso = new Drinkables("Espresso", size, 180);
@@ -255,7 +257,7 @@ public class MenuListActivity extends AppCompatActivity {
         ArrayList<Double> size = new ArrayList<>();
         size.add(0.2);
         size.add(0.4);
-        size.add(0.5);
+        //size.add(0.5);
         Drinkables Glace = new Drinkables("Glace", size, 120);
         Drinkables Raf = new Drinkables("Raf", size, 140);
         Drinkables Frappe = new Drinkables("Frappe", size, 230);
@@ -296,10 +298,4 @@ public class MenuListActivity extends AppCompatActivity {
         return list;
     }
 
-
-    private void setUpList() {
-        for (String item:catnames)
-            list.add(item);
-
-    }
 }

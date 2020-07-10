@@ -20,6 +20,7 @@ public class MenuFilterActivity extends Activity {
     Button buttonSize3;
     Button buttonPrice;
     Button buttonAccept;
+    Button buttonResent;
 
     int sizeDrinkable = -1;
 
@@ -33,16 +34,21 @@ public class MenuFilterActivity extends Activity {
         buttonSize2 = findViewById(R.id.s2);
         buttonSize3 = findViewById(R.id.s3);
         buttonAccept = findViewById(R.id.buttonAccept);
+        buttonResent = findViewById(R.id.buttonResent);
         //buttonPrice = findViewById(R.id.coffee);
+
 
         buttonSize1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sizeDrinkable = 1;
                 Context context = v.getContext();
-                buttonSize2.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
-                buttonSize3.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
-                buttonSize1.setBackground(context.getResources().getDrawable(R.drawable.rounded_new_button));
+                buttonSize1.setAlpha(1f);
+                buttonSize2.setAlpha(0.7f);
+                buttonSize3.setAlpha(0.7f);
+                //buttonSize2.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
+                //buttonSize3.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
+                //buttonSize1.setBackground(context.getResources().getDrawable(R.drawable.rounded_new_button));
             }
         });
 
@@ -51,9 +57,9 @@ public class MenuFilterActivity extends Activity {
             public void onClick(View v) {
                 sizeDrinkable = 2;
                 Context context = v.getContext();
-                buttonSize1.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
-                buttonSize3.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
-                buttonSize2.setBackground(context.getResources().getDrawable(R.drawable.rounded_new_button));
+                buttonSize2.setAlpha(1f);
+                buttonSize1.setAlpha(0.7f);
+                buttonSize3.setAlpha(0.7f);
             }
         });
 
@@ -62,20 +68,24 @@ public class MenuFilterActivity extends Activity {
             public void onClick(View v) {
                 sizeDrinkable = 3;
                 Context context = v.getContext();
-                buttonSize2.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
-                buttonSize1.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
-                buttonSize3.setBackground(context.getResources().getDrawable(R.drawable.rounded_new_button));
+                buttonSize3.setAlpha(1f);
+                buttonSize1.setAlpha(0.7f);
+                buttonSize2.setAlpha(0.7f);
+                //buttonSize2.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
+                //buttonSize1.setBackground(context.getResources().getDrawable(R.drawable.rounded_button));
+                //buttonSize3.setBackground(context.getResources().getDrawable(R.drawable.rounded_new_button));
             }
         });
 
         buttonAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = v.getContext();
-                Intent i = new Intent(MenuFilterActivity.this, MenuListActivity.class);
-                i.putExtra("sizeFilter", sizeDrinkable);
+                //Context context = v.getContext();
+                //Intent intent = new Intent(MenuFilterActivity.this, MenuListActivity.class);
+                //intent.putExtra("sizeDrink", sizeDrinkable);
                 //sizeDrinkable = -1;
-                startActivity(i);
+                //startActivity(intent);
+                finish();
             }
         });
 
