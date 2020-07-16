@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
     AnimatorSet set;
+    public static final String APP_PREFERENCES = "PreferencesFilter";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,10 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear().apply();
+
+        SharedPreferences sharedPreferencesMenu = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editorMenu = sharedPreferencesMenu.edit();
+        editorMenu.clear().apply();
     }
 
 }
