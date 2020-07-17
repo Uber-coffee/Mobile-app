@@ -56,7 +56,7 @@ public class CompleteInfoAboutDrink extends AppCompatActivity {
         }
         ImageView imgView = (ImageView)this.findViewById(R.id.image_drink);
         Glide.with(CompleteInfoAboutDrink.this)
-                .load(this.getResources().getStringArray(R.array.images_references)[1])
+                .load(this.getResources().getStringArray(R.array.images_references)[2])
                 .error(R.drawable.dark_logo)
                 .apply(new RequestOptions().override(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT))
                 .into(imgView);

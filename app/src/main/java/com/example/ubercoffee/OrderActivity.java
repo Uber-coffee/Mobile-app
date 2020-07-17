@@ -117,7 +117,7 @@ public class OrderActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AlertDialogTheme);
                 builder.setTitle("Thank you!");
                 builder.setMessage("We wait you again!");
-                builder.setPositiveButton("ÐžÐš", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Ð—Ð°ÐºÑ€Ñ‹Ð²Ð°ÐµÐ¼ Ð¾ÐºÐ½Ð¾
                         dialog.cancel();

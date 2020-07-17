@@ -34,7 +34,9 @@ public class ListOfShopsActivity extends AppCompatActivity {
     private  ArrayList<CoffeeMarket> coffeeMarkets = new ArrayList<>();
     private  ArrayList<CoffeeMarket> coffeeMarkets_copy;
     private ImageButton imageButton;
-    private Button profile_button;
+    private Button buttonProfile;
+    private Button buttonShops;
+    private String phone;
     
 
     @Override
@@ -47,7 +49,7 @@ public class ListOfShopsActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        phone = getIntent().getStringExtra("phone_number");
         ShopsAdapter sadapter = new ShopsAdapter(this);
 
         SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
@@ -60,15 +62,20 @@ public class ListOfShopsActivity extends AppCompatActivity {
         }else{
             coffeeMarkets = coffeeMarkets_copy;
         }
+        buttonShops = findViewById(R.id.listOfShops);
+        buttonProfile = findViewById(R.id.profile);
 
+        buttonShops.setAlpha(1f);
+        buttonProfile.setAlpha(0.7f);
 
-        //HERE TO DO!!!!!!! SAVE PHONE NUMBER
-        profile_button = (Button)findViewById(R.id.button_profile);
-        profile_button.setOnClickListener(new View.OnClickListener() {
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListOfShopsActivity.this, Pop.class);
-                startActivityForResult(intent,0);
+                //buttonShops.setAlpha(0.7f);
+                //buttonProfile.setAlpha(1f);
+                Intent intentProfile = new Intent(ListOfShopsActivity.this, ProfileActivity.class);
+                intentProfile.putExtra("phone_number", phone);
+                startActivity(intentProfile);
             }
         });
 
@@ -88,6 +95,7 @@ public class ListOfShopsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ListOfShopsActivity.this, MenuListActivity.class);
+                intent.putExtra("phone_number", phone);
                 startActivity(intent);
             }
         });
@@ -114,7 +122,7 @@ public class ListOfShopsActivity extends AppCompatActivity {
         int size = 3;
         for (CoffeeMarket market : coffeeMarkets) {
             market.setUrl_photo(urls[i]);
-            market.setFullness((i + 1) % size);
+            market.setFullness(i % size + 1);
             i++;
         }
 
