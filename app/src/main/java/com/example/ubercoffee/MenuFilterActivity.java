@@ -59,9 +59,9 @@ public class MenuFilterActivity extends Activity {
         tTop1 = findViewById(R.id.topBar1);
         tTop2 = findViewById(R.id.topBar2);
 
-        SpannableString text =  new SpannableString("100");
+        SpannableString text = new SpannableString("0");
         tTop1.setText(text);
-        text =  new SpannableString("230");
+        text = new SpannableString("230");
         tTop2.setText(text);
 
 
@@ -77,9 +77,9 @@ public class MenuFilterActivity extends Activity {
         }
 
         buttonTopPrice.setMax(230);
-        buttonTopPrice.setMin(100);
+        buttonTopPrice.setMin(0);
 
-        //type = getIntent().getStringExtra("type");
+//type = getIntent().getStringExtra("type");
 
         switch (sizeFilter){
             case 0:
@@ -137,6 +137,7 @@ public class MenuFilterActivity extends Activity {
                 buttonSize2.setAlpha(0.7f);
                 buttonSize3.setAlpha(0.7f);
             }
+
         });
 
         buttonSize2.setOnClickListener(new View.OnClickListener() {
@@ -162,12 +163,12 @@ public class MenuFilterActivity extends Activity {
         buttonAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //SharedPreferences PreferencesMenuAccept = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-                //SharedPreferences.Editor editorAccept = PreferencesMenuAccept.edit();
-                //editorAccept.clear().apply();
-                //editorAccept.putInt(APP_PREFERENCES_SIZE, sizeFilter);
-                //editorAccept.putString(APP_PREFERENCES_TYPE, type);
-                //editorAccept.apply();
+//SharedPreferences PreferencesMenuAccept = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+//SharedPreferences.Editor editorAccept = PreferencesMenuAccept.edit();
+//editorAccept.clear().apply();
+//editorAccept.putInt(APP_PREFERENCES_SIZE, sizeFilter);
+//editorAccept.putString(APP_PREFERENCES_TYPE, type);
+//editorAccept.apply();
                 PreferencesFilter = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
                 editor = PreferencesFilter.edit();
                 editor.clear().apply();
@@ -192,10 +193,10 @@ public class MenuFilterActivity extends Activity {
                 buttonTopPrice.setProgress(topPrice);
                 String textTopPrice = Integer.toString(topPrice);
                 textTop.setText(textTopPrice);
-                //
-                //SharedPreferences PreferencesMenuResent = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-                //SharedPreferences.Editor editorResent = PreferencesMenuResent.edit();
-                //editorResent.clear().apply();
+//
+//SharedPreferences PreferencesMenuResent = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+//SharedPreferences.Editor editorResent = PreferencesMenuResent.edit();
+//editorResent.clear().apply();
                 PreferencesFilter = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
                 editor = PreferencesFilter.edit();
                 editor.clear().apply();

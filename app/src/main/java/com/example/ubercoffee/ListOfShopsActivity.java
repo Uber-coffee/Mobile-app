@@ -29,6 +29,12 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class ListOfShopsActivity extends AppCompatActivity {
 
     private  ArrayList<CoffeeMarket> coffeeMarkets = new ArrayList<>();
@@ -37,33 +43,22 @@ public class ListOfShopsActivity extends AppCompatActivity {
     private Button buttonProfile;
     private Button buttonShops;
     private String phone;
-    
+
+    String answer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops);
 
+        test_with_base();
 
-        try {
-            coffeeMarkets_copy = initShopsList();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         phone = getIntent().getStringExtra("phone_number");
 
-        ShopsAdapter sadapter = new ShopsAdapter(this);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
-        if(sharedPreferences.contains("Distance")){
-            if(sharedPreferences.getInt("Distance", 100) != 0 || sharedPreferences.getInt("Fullness_green", 100) != 0 || sharedPreferences.getInt("Fullness_red", 100) != 0 || sharedPreferences.getInt("Fullness_yellow", 100) != 0){
-                apply_filters(sharedPreferences.getInt("Distance", 100), sharedPreferences.getInt("Fullness_green", 100), sharedPreferences.getInt("Fullness_red", 100), sharedPreferences.getInt("Fullness_yellow", 100));
-            }else{
-                coffeeMarkets = coffeeMarkets_copy;
-            }
-        }else{
-            coffeeMarkets = coffeeMarkets_copy;
-        }
+
+
         buttonShops = findViewById(R.id.listOfShops);
         buttonProfile = findViewById(R.id.profile);
 
@@ -101,18 +96,6 @@ public class ListOfShopsActivity extends AppCompatActivity {
             }
         });
 
-
-        ListView lv = (ListView) findViewById(R.id.lvMain);
-        lv.setAdapter(sadapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ListOfShopsActivity.this, MenuListActivity.class);
-                intent.putExtra("phone_number", phone);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -128,7 +111,8 @@ public class ListOfShopsActivity extends AppCompatActivity {
         ArrayList<CoffeeMarket> coffeeMarkets = new ArrayList<>();
 
         ParseShopsJson p = new ParseShopsJson();
-        coffeeMarkets = (ArrayList<CoffeeMarket>) p.getCoffeeMarkets(p.parse_json(ListOfShopsActivity.this));
+
+        coffeeMarkets = (ArrayList<CoffeeMarket>) p.getCoffeeMarkets(p.parse_json(ListOfShopsActivity.this, answer));
 
         String [] urls = getResources().getStringArray(R.array.images_references);
 
@@ -182,6 +166,72 @@ public class ListOfShopsActivity extends AppCompatActivity {
         }else{
             coffeeMarkets = sorted_markets;
         }
+    }
+
+    private void test_with_base(){
+        String str = " ";
+        SharedPreferences sp = getSharedPreferences("forAuthorization",MODE_PRIVATE);
+        if(sp.contains("Authorization")){
+            str = sp.getString("Authorization"," ");
+        }
+
+        Retrofit retrofit = ApiClient.getClientForTrade(str);
+
+        Json service = retrofit.create(Json.class);
+        Call<ResponseBody> call = service.getTrade(22.164,33.264);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                System.out.println(response.code());
+                if(response.isSuccessful()){
+                    try {
+                        answer = new String(response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(answer);
+
+                        try {
+                            coffeeMarkets_copy = initShopsList();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
+                        if(sharedPreferences.contains("Distance")){
+                            if(sharedPreferences.getInt("Distance", 100) != 0 || sharedPreferences.getInt("Fullness_green", 100) != 0 || sharedPreferences.getInt("Fullness_red", 100) != 0 || sharedPreferences.getInt("Fullness_yellow", 100) != 0){
+                                apply_filters(sharedPreferences.getInt("Distance", 100), sharedPreferences.getInt("Fullness_green", 100), sharedPreferences.getInt("Fullness_red", 100), sharedPreferences.getInt("Fullness_yellow", 100));
+                            }else{
+                                coffeeMarkets = coffeeMarkets_copy;
+                            }
+                        }else{
+                            coffeeMarkets = coffeeMarkets_copy;
+                        }
+
+                    ShopsAdapter sadapter = new ShopsAdapter(ListOfShopsActivity.this);
+                    ListView lv = (ListView) findViewById(R.id.lvMain);
+                    lv.setAdapter(sadapter);
+
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent(ListOfShopsActivity.this, MenuListActivity.class);
+                            intent.putExtra("phone_number", phone);
+                            startActivity(intent);
+                        }
+                    });
+
+                    System.out.println(answer);
+                }else{
+                    System.out.println(response.code() + " NOT GOoD");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("BAD");
+            }
+        });
     }
 
     class ShopsAdapter extends BaseAdapter {

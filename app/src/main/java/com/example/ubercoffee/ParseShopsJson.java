@@ -19,20 +19,20 @@ public class ParseShopsJson {
     }
     static class tradePoint{
         public int id;
+        public String name;
         public String address;
         public double latitude;
         public double longitude;
         public boolean isActive;
-        public String[] users;
     }
 
-    public List<CoffeeShop> parse_json(Activity activity) throws IOException
+    public List<CoffeeShop> parse_json(Activity activity, String text) throws IOException
     {
-        InputStream is = activity.getAssets().open("coffee_shops.json");
+        /*InputStream is = activity.getAssets().open("coffee_shops.json");
         int size = is.available();
         byte[] buffer = new byte[size];
         is.read(buffer);
-        String text = new String(buffer);
+        String text = new String(buffer);*/
 
         Gson g = new Gson();
         Type type = new TypeToken<List<CoffeeShop>>(){}.getType();
