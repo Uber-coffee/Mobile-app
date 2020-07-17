@@ -1,14 +1,41 @@
 <resources>
-    <string name="app_name">UberCoffee</string>
-    <string name="uber_coffee">Uber Coffee</string>
+    <string name="app_name">Uber Coffee</string>
     <string name="x_phone_number">XXXXXXXXXXX</string>
-    <string name="enter_botton">ENTER</string>
+    <string name="enter_button">ENTER</string>
     <string name="enter_a_phone_number">Enter a phone number</string>
-    <string name="by_using_this_application">By using this application, you agree to have your personal data stored and processed in Uber Coffee</string>
+    <string name="by_using_this_application">By using this application you agree to have your personal data stored and processed in Uber Coffee</string>
     <string name="phone_number_is_correct">Phone number is correct</string>
     <string name="phone_number_is_incorrect">Phone number is incorrect</string>
     <string name="enter_a_code_from_sms">Enter a code from SMS</string>
-    <string name="incorrect_pin_code">Incorrect pin code</string>
+    <string name="incorrect_pin_code">You entered a wrong code\nTry again in 1 minute</string>
     <string name="correct_pin_code">Correct pin code</string>
     <string name="x_sms_code">XXXX</string>
+    <string name="resend_code">RESEND CODE</string>
+    <string name="timer_start_value">00:%02d</string>
+    <string name="profile">profile</string>
+    <string name="list_of_shops">list of shops</string>
+    <string name="distance">Distance</string>
+    <string name="up_to_0_5_km">up to 0.5 km</string>
+    <string name="up_to_1_km">up to 1 km</string>
+    <string name="up_to_1_5_km">up to 1.5 km</string>
+    <string name="fullness">Fullness</string>
+    <string name="accept">Enter</string>
+    <string name="reset">Reset</string>
+    <string name="Ingredients">Ingredients</string>
+    <string name="Sugar">Sugar</string>
+    <string name="Size">Size</string>
+    <string name="Total">Total:</string>
+    <string name="AddCart">Add to cart</string>
+    <string-array name="images_references">
+        <item>https://img2.goodfon.ru/wallpaper/nbig/3/89/meshkovina-kruzhka-kofe.jpg</item>
+        <item>https://posudaguide.ru/wp-content/uploads/2019/05/CHashka-s-kofe-2.jpg</item>
+        <item>https://s1.1zoom.ru/b4756/853/Drinks_Coffee_Cup_Grain_518620_2048x1152.jpg</item>
+        <item>https://avatars.mds.yandex.net/get-zen_doc/1219682/pub_5c03cabcdad30903b0d0b757_5c03cdb0bf228500aa568af7/scale_1200</item>
+        <item>https://www.zastavki.com/pictures/originals/2017Food___Drinks_Red_coffee_cup_on_a_saucer_with_coffee_beans_120044_.jpg</item>
+        <item>https://img2.akspic.ru/image/129815-kubinskij_espresso-napitok-kofe-kofein-kofe_espresso-2560x1600.jpg</item>
+        <item>https://www.tokkoro.com/picsup/3347816-steam-coffee-cup-hot-drink.jpg</item>
+        <item>https://wallbox.ru/wallpapers/main2/201728/adro12.jpg</item>
+        <item>https://wallbox.ru/wallpapers/main2/201726/caska-kofejnye-zerna-vypecka-keks-krem.jpg</item>
+        <item>http://nov-bazar.od.ua/image/data/foto/koffee.jpg</item>
+    </string-array>
 </resources>
