@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class ParseJson {
@@ -39,16 +40,21 @@ public class ParseJson {
     public Drinkables getItemDrinkables(List<Drink> drinks, String coffee_name) {
         ArrayList<Double> sizes = new ArrayList<>();
         ArrayList<Double> prices = new ArrayList<>();
+        HashMap<String, Integer> recipes = new HashMap<>();
         for (int i = 0; i < drinks.size(); i++) {
             String current_name = drinks.get(i).name;
             if (coffee_name.equals(current_name)) {
                 sizes.add(drinks.get(i).volume);
                 prices.add(Double.parseDouble(String.valueOf(drinks.get(i).price)));
+                List<Ingredients> ingredients = drinks.get(i).recipe;
+                for (Ingredients ingredient_group : ingredients) {
+                    recipes.put(ingredient_group.name, ingredient_group.quantity);
+                }
             }
         }
         Collections.sort(sizes);
         Collections.sort(prices);
-        return new Drinkables(coffee_name, sizes, prices);
+        return new Drinkables(coffee_name, sizes, prices, recipes);
     }
 
     public List<Drinkables> getDrinkables(List<Drink> drinks) {

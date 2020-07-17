@@ -1,20 +1,32 @@
 package com.example.ubercoffee;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Drinkables {
+public class Drinkables implements Serializable {
 
     private String nameDrinkables;
 
     // Image name (Without extension)
     private ArrayList<Double> sizeDrinkables;
     private ArrayList<Double> priceDrinkables;
+    private HashMap<String, Integer> recipes_ = null;
+
 
     public Drinkables(String nameDrinkables, ArrayList<Double> sizeDrinkables, ArrayList<Double> priceDrinkables) {
         this.nameDrinkables= nameDrinkables;
         this.sizeDrinkables= sizeDrinkables;
         this.priceDrinkables= priceDrinkables;
+    }
+
+    public Drinkables(String nameDrinkables, ArrayList<Double> sizeDrinkables, ArrayList<Double> priceDrinkables,
+                      HashMap<String, Integer> recipes) {
+        this.nameDrinkables= nameDrinkables;
+        this.sizeDrinkables= sizeDrinkables;
+        this.priceDrinkables= priceDrinkables;
+        this.recipes_ = recipes;
     }
 
     public String getNameDrinkables() {
@@ -45,4 +57,10 @@ public class Drinkables {
         this.priceDrinkables = priceDrinkables;
     }
 
+    public HashMap<String, Integer> getRecipesDrinkables() {
+        return this.recipes_;
+    }
+
 }
+
+

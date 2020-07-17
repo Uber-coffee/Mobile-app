@@ -1,102 +1,102 @@
 [
   {
-    "name": "cappuccino",
+    "name": "Cappuccino",
     "price": 120,
     "recipe": [
       {
         "measure": "GRAM",
-        "name": "coffee",
+        "name": "Coffee",
         "quantity": 50
       },
       {
         "measure": "GRAM",
-        "name": "milk",
+        "name": "Milk",
         "quantity": 50
       }
     ],
     "volume": 0.2
   },
   {
-    "name": "cappuccino",
+    "name": "Cappuccino",
     "price": 140,
     "recipe": [
       {
         "measure": "GRAM",
-        "name": "coffee",
+        "name": "Coffee",
         "quantity": 50
       },
       {
         "measure": "GRAM",
-        "name": "milk",
+        "name": "Milk",
         "quantity": 50
       }
     ],
     "volume": 0.4
   },
   {
-    "name": "cappuccino",
+    "name": "Cappuccino",
     "price": 150,
     "recipe": [
       {
         "measure": "GRAM",
-        "name": "coffee",
+        "name": "Coffee",
         "quantity": 50
       },
       {
         "measure": "GRAM",
-        "name": "milk",
+        "name": "Milk",
         "quantity": 50
       }
     ],
     "volume": 0.5
   },
   {
-    "name": "latte",
+    "name": "Latte",
     "price": 140,
     "recipe": [
       {
         "measure": "GRAM",
-        "name": "coffee",
-        "quantity": 50
+        "name": "Coffee",
+        "quantity": 40
       },
       {
         "measure": "GRAM",
-        "name": "milk",
-        "quantity": 50
+        "name": "Milk",
+        "quantity": 60
       }
     ],
     "volume": 0.2
   },
   {
-    "name": "latte",
+    "name": "Latte",
     "price": 170,
     "recipe": [
       {
         "measure": "GRAM",
-        "name": "coffee",
-        "quantity": 50
+        "name": "Coffee",
+        "quantity": 40
       },
       {
         "measure": "GRAM",
-        "name": "milk",
-        "quantity": 50
+        "name": "Milk",
+        "quantity": 60
       }
     ],
     "volume": 0.4
   },
   {
-    "name": "latte",
+    "name": "Latte",
     "price": 190,
     "recipe": [
       {
         "measure": "GRAM",
-        "name": "coffee",
-        "quantity": 50
+        "name": "Coffee",
+        "quantity": 40
       },
       {
         "measure": "GRAM",
-        "name": "milk",
-        "quantity": 50
+        "name": "Milk",
+        "quantity": 60
       }
     ],
     "volume": 0.5

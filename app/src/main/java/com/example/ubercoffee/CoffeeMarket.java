@@ -2,30 +2,47 @@ package com.example.ubercoffee;
 
 public class CoffeeMarket {
 
-    private String marketAdress_;
+    private String marketAddress_;
     private int coffeeCost_;
     private double distanceToMarket_;
+    private int time_;
     private String url_photo_;
     private int fullness_;
 
-    private CoffeeMarket( String marketAdress, int coffeeCost, double distanceToMarket,String url_photo, int fullness){
-        marketAdress_ = marketAdress;
+    public CoffeeMarket(String marketAddress, int coffeeCost, double distanceToMarket, int time){
+        marketAddress_ = marketAddress;
+        coffeeCost_ = coffeeCost;
+        distanceToMarket_ = distanceToMarket;
+        time_ = time;
+    }
+
+    public CoffeeMarket(String marketAddress, int coffeeCost, double distanceToMarket, int time, String url_photo, int fullness){
+        marketAddress_ = marketAddress;
         coffeeCost_ = coffeeCost;
         distanceToMarket_ = distanceToMarket;
         url_photo_ = url_photo;
         fullness_ = fullness;
+        time_ = time;
     }
 
-    public static CoffeeMarket initMarket(String marketAdress, int coffeeCost, double distanceToMarket,String url_photo, int fullness){
-        if(marketAdress.equals("") || coffeeCost < 0){
+    public static CoffeeMarket initMarket(String marketAddress, int coffeeCost, double distanceToMarket, int time, String url_photo, int fullness){
+        if(marketAddress.equals("") || coffeeCost < 0){
             return null;
         }else{
-            return new CoffeeMarket(marketAdress,coffeeCost, distanceToMarket, url_photo, fullness);
+            return new CoffeeMarket(marketAddress, coffeeCost, distanceToMarket, time, url_photo, fullness);
         }
     }
 
-    public String retAdress(){
-        return marketAdress_;
+    public void setUrl_photo(String url) {
+        url_photo_ = url;
+    }
+
+    public void setFullness(int fullness) {
+        fullness_ = fullness;
+    }
+
+    public String retAddress(){
+        return marketAddress_;
     }
 
     public double retDistance(){
@@ -43,5 +60,7 @@ public class CoffeeMarket {
     public String retUrl(){
         return url_photo_;
     }
+
+    public int retTime() { return time_; }
 
 }

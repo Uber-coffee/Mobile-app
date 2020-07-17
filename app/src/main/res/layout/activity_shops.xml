@@ -66,6 +66,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            android:id ="@+id/listOfShops"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:textStyle="bold"
@@ -74,6 +75,7 @@
             android:layout_height="match_parent"
             android:background="@color/colorAccent"/>
         <Button
+            android:id = "@+id/profile"
             android:layout_weight="1"
             android:textStyle="bold"
             android:textColor="@color/colorBackground"

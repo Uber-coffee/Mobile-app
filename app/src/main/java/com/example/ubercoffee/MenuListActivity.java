@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MenuListActivity extends AppCompatActivity {
@@ -140,8 +141,11 @@ public class MenuListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 Object o = gridView.getItemAtPosition(position);
                 Drinkables drinkables = (Drinkables) o;
-                Toast.makeText(MenuListActivity.this, "Selected :"
-                        + " " + drinkables, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(v.getContext(), CompleteInfoAboutDrink.class);
+                intent.putExtra("drink", drinkables);
+                startActivityForResult(intent, 0);
+                overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
             }
         });
 

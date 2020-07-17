@@ -25,6 +25,7 @@ import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -43,9 +44,13 @@ public class ListOfShopsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops);
 
-        phone = getIntent().getStringExtra("phone_number");
 
-        coffeeMarkets_copy = initShopsList();
+        try {
+            coffeeMarkets_copy = initShopsList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        phone = getIntent().getStringExtra("phone_number");
 
         ShopsAdapter sadapter = new ShopsAdapter(this);
 
@@ -59,13 +64,22 @@ public class ListOfShopsActivity extends AppCompatActivity {
         }else{
             coffeeMarkets = coffeeMarkets_copy;
         }
-
         buttonShops = findViewById(R.id.listOfShops);
         buttonProfile = findViewById(R.id.profile);
 
         buttonShops.setAlpha(1f);
         buttonProfile.setAlpha(0.7f);
 
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //buttonShops.setAlpha(0.7f);
+                //buttonProfile.setAlpha(1f);
+                Intent intentProfile = new Intent(ListOfShopsActivity.this, ProfileActivity.class);
+                intentProfile.putExtra("phone_number", phone);
+                startActivity(intentProfile);
+            }
+        });
 
         imageButton = (ImageButton) findViewById(R.id.filters);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -109,20 +123,31 @@ public class ListOfShopsActivity extends AppCompatActivity {
         }
     }
 
-    private ArrayList<CoffeeMarket> initShopsList(){
+    private ArrayList<CoffeeMarket> initShopsList() throws IOException {
 
         ArrayList<CoffeeMarket> coffeeMarkets = new ArrayList<>();
 
+        ParseShopsJson p = new ParseShopsJson();
+        coffeeMarkets = (ArrayList<CoffeeMarket>) p.getCoffeeMarkets(p.parse_json(ListOfShopsActivity.this));
+
         String [] urls = getResources().getStringArray(R.array.images_references);
 
-        for(int i = 0; i < 10; i++){
+        int i = 0;
+        int size = 3;
+        for (CoffeeMarket market : coffeeMarkets) {
+            market.setUrl_photo(urls[i]);
+            market.setFullness(i % size + 1);
+            i++;
+        }
+
+       /* for(int i = 0; i < 10; i++){
             double dist = 0.2*(i+1);
             dist*=10;
             int res = (int) Math.round(dist);
             dist = (double)res/10;
             CoffeeMarket coffeeMarket = CoffeeMarket.initMarket(new String("test_address" + (i + 1)),100, dist, urls[i], randVal());
             coffeeMarkets.add(coffeeMarket);
-        }
+        }*/
 
         return coffeeMarkets;
     }
@@ -205,10 +230,11 @@ public class ListOfShopsActivity extends AppCompatActivity {
             cost.setText("from " + coffeeMarkets.get(position).retCost() + " ₽");
 
             TextView time = (TextView) convertView.findViewById(R.id.time);
-            time.setText("> 6 min");
+            String time_out = "> " + coffeeMarkets.get(position).retTime() + " min";
+            time.setText(time_out);
 
-            TextView adress = (TextView)convertView.findViewById(R.id.adress);
-            adress.setText(coffeeMarkets.get(position).retAdress());
+            TextView address = (TextView)convertView.findViewById(R.id.adress);
+            address.setText(coffeeMarkets.get(position).retAddress());
 
             TextView fullness = (TextView) convertView.findViewById(R.id.fullness);
 
