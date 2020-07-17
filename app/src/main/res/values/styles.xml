@@ -25,4 +25,31 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
+    <style name="SeekBarTheme" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressTint">@color/colorPrimaryDark</item>
+        <item name="android:progressBackgroundTint">@color/colorBackground</item>
+        <item name="android:colorControlActivated">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorBackground</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/colorBackground
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/colorPrimaryDark
+        </item>
+    </style>
+    <style name="Divider">
+        <item name="android:background">@color/colorBackground</item>
+    </style>
+
+    <style name="Divider.Horizontal" parent="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+
 </resources>

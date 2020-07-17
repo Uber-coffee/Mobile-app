@@ -21,6 +21,11 @@
     <string name="fullness">Fullness</string>
     <string name="accept">Enter</string>
     <string name="reset">Reset</string>
+    <string name="Ingredients">Ingredients</string>
+    <string name="Sugar">Sugar</string>
+    <string name="Size">Size</string>
+    <string name="Total">Total:</string>
+    <string name="AddCart">Add to cart</string>
     <string-array name="images_references">
         <item>https://img2.goodfon.ru/wallpaper/nbig/3/89/meshkovina-kruzhka-kofe.jpg</item>
         <item>https://posudaguide.ru/wp-content/uploads/2019/05/CHashka-s-kofe-2.jpg</item>
