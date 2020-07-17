@@ -16,16 +16,16 @@
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
-
         </activity>
 
         <activity android:name=".Pop"
@@ -44,10 +44,22 @@
         </activity>
 
         <activity android:name=".MenuListActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".CompleteInfoAboutDrink"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity android:name=".MenuFilterActivity"
             android:theme="@style/AppTheme.PopMe" />
+
+        <activity android:name=".OrderActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ProfileActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"
