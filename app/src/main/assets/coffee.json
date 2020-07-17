@@ -100,5 +100,56 @@
       }
     ],
     "volume": 0.5
+  },
+  {
+    "name": "Raf",
+    "price": 170,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "Coffee",
+        "quantity": 35
+      },
+      {
+        "measure": "GRAM",
+        "name": "Milk",
+        "quantity": 65
+      }
+    ],
+    "volume": 0.2
+  },
+  {
+    "name": "Raf",
+    "price": 200,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "Coffee",
+        "quantity": 35
+      },
+      {
+        "measure": "GRAM",
+        "name": "Milk",
+        "quantity": 65
+      }
+    ],
+    "volume": 0.4
+  },
+  {
+    "name": "Raf",
+    "price": 230,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "Coffee",
+        "quantity": 35
+      },
+      {
+        "measure": "GRAM",
+        "name": "Milk",
+        "quantity": 65
+      }
+    ],
+    "volume": 0.5
   }
 ]
