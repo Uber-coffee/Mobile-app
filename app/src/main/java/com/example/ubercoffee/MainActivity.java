@@ -1,8 +1,13 @@
 package com.example.ubercoffee;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
     EditText editPhone;
     Button buttonEnter;
     CheckBox checkBox;
-    String phone;
 
     boolean phoneNumberIsCorrect = false;
+
+    final int DIALOG_NO_INTERNET = 1;
 
 
     @Override
@@ -65,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (phoneNumberIsCorrect) {
-                        phone = input;
                         tvFail.setVisibility(View.INVISIBLE);
                         tvSuccess.setVisibility(View.VISIBLE);
                         if (checkBox.isChecked()) {
@@ -102,12 +107,55 @@ public class MainActivity extends AppCompatActivity {
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent smsActivityIntent = new Intent(MainActivity.this, SmsCodeActivity.class);
-                smsActivityIntent.putExtra("phone_number", phone);
-                startActivity(smsActivityIntent);
+                if(isOnline()){
+                    String str = parseNum(editPhone.getText().toString());
+                    Intent smsActivityIntent = new Intent(MainActivity.this, SmsCodeActivity.class);
+                    smsActivityIntent.putExtra("key", str);
+                    startActivity(smsActivityIntent);
+                }else{
+                    showDialog(DIALOG_NO_INTERNET);
+                }
             }
         });
 
 
+    }
+
+    private String parseNum(String inputNum){
+        String str = new String(inputNum.replaceAll("[-()]",""));
+        return str;
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if(id == DIALOG_NO_INTERNET){
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.setTitle("No Internet!");
+            adb.setMessage("We can't connect the internet, please check your internet connection!");
+            adb.setPositiveButton("OK", myClickListener);
+            return adb.create();
+        }
+        return super.onCreateDialog(id);
+    }
+
+    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case Dialog.BUTTON_POSITIVE:
+                    break;
+            }
+        }
+    };
+
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm != null && cm.getActiveNetworkInfo() == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
