@@ -130,11 +130,13 @@
                     android:layout_width="5dp"
                     android:layout_height="match_parent"/>
 
-                <ImageView
+                <TextView
                     android:id="@+id/rating"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:drawableStart="@drawable/dark_heart"
+                    android:drawableEnd="@drawable/dark_heart"
                     android:background="@drawable/rounded_textview_background"
                     android:gravity="center" />
             </LinearLayout>
