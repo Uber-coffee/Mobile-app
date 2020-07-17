@@ -3,7 +3,9 @@ package com.example.ubercoffee;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -30,6 +32,7 @@ import java.util.Map;
 
 public class OrderActivity extends AppCompatActivity {
 
+    private static final int DIALOG_GOOD_ENTRY = 1;
     private GridView gridView;
 
     private ImageButton bMinus;
@@ -106,15 +109,31 @@ public class OrderActivity extends AppCompatActivity {
 
         bSubmit = findViewById(R.id.submit);
 
+
         bSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrderActivity.this, ListOfShopsActivity.class);
-                SharedPreferences order_saving = getSharedPreferences("com.example.app", Context.MODE_PRIVATE);
-                SharedPreferences.Editor ed = order_saving.edit();
-                ed.clear().apply();
-                intent.putExtra("phone_number", phone);
-                startActivity(intent);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AlertDialogTheme);
+                builder.setTitle("Thank you!");
+                builder.setMessage("We wait you again!");
+                builder.setPositiveButton("ÐžÐš", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Ð—Ð°ÐºÑ€Ñ‹Ð²Ð°ÐµÐ¼ Ð¾ÐºÐ½Ð¾
+                        dialog.cancel();
+                        SharedPreferences order_saving = getSharedPreferences("com.example.app", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor ed = order_saving.edit();
+                        ed.clear().apply();
+                        Intent intent = new Intent(OrderActivity.this, ListOfShopsActivity.class);
+                        intent.putExtra("phone_number", phone);
+                        startActivity(intent);
+                    }
+                });
+
+                final Dialog dlg = builder.create();
+
+                dlg.show();
+
             }
         });
 
