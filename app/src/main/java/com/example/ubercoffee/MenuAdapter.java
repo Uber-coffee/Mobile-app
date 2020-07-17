@@ -68,7 +68,7 @@ public class MenuAdapter  extends BaseAdapter {
             holder.sizeDrinkablesView.append("  " + size);
         }
         //holder.sizeDrinkablesView.setText("Size: " +  drinkables.getSizeDrinkables());
-        holder.priceDrinkablesView.setText("from " + drinkables.getPriceDrinkables() + "₽");
+        holder.priceDrinkablesView.setText("from " + drinkables.getPriceDrinkables().get(0) + "₽");
 
        // int imageId = this.getMipmapResIdByName(drinkables.getNameDrinkables());
         //holder.imageDrinkablesView.setImageResource(imageId);

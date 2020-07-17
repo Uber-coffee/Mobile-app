@@ -243,7 +243,7 @@ public class MenuListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            //MenuListActivity.this.recreate();
+            MenuListActivity.this.recreate();
         }
     }
 

@@ -44,12 +44,14 @@ public class ListOfShopsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops);
 
+
         try {
             coffeeMarkets_copy = initShopsList();
         } catch (IOException e) {
             e.printStackTrace();
         }
         phone = getIntent().getStringExtra("phone_number");
+
         ShopsAdapter sadapter = new ShopsAdapter(this);
 
         SharedPreferences sharedPreferences = getSharedPreferences("for.filters", MODE_PRIVATE);
@@ -87,6 +89,18 @@ public class ListOfShopsActivity extends AppCompatActivity {
                 startActivityForResult(intent,0);
             }
         });
+
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //buttonShops.setAlpha(0.7f);
+                //buttonProfile.setAlpha(1f);
+                Intent intentProfile = new Intent(ListOfShopsActivity.this, ProfileActivity.class);
+                intentProfile.putExtra("phone_number", phone);
+                startActivity(intentProfile);
+            }
+        });
+
 
         ListView lv = (ListView) findViewById(R.id.lvMain);
         lv.setAdapter(sadapter);

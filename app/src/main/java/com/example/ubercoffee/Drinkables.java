@@ -14,6 +14,7 @@ public class Drinkables implements Serializable {
     private ArrayList<Double> priceDrinkables;
     private HashMap<String, Integer> recipes_ = null;
 
+
     public Drinkables(String nameDrinkables, ArrayList<Double> sizeDrinkables, ArrayList<Double> priceDrinkables) {
         this.nameDrinkables= nameDrinkables;
         this.sizeDrinkables= sizeDrinkables;
@@ -61,3 +62,5 @@ public class Drinkables implements Serializable {
     }
 
 }
+
+
