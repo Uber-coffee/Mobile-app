@@ -116,7 +116,7 @@
             android:id="@+id/menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/back_bottom"
             android:layout_below="@id/b3"
             app:layout_constraintTop_toTopOf="@id/b3"
             android:layout_marginTop="10dp"
