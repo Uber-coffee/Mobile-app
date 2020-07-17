@@ -104,8 +104,10 @@ public class SmsCodeActivity extends AppCompatActivity {
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String phone = getIntent().getStringExtra("phone_number");
                 if (codeIsAccepted(editSmsCode.getText().toString())) {
                     Intent shopsActivityIntent = new Intent(SmsCodeActivity.this, ListOfShopsActivity.class);
+                    shopsActivityIntent.putExtra("phone_number", phone);
                     startActivity(shopsActivityIntent);
                 } else {
                     enterCanBeEnabled = false;

@@ -33,12 +33,17 @@ public class ListOfShopsActivity extends AppCompatActivity {
     private  ArrayList<CoffeeMarket> coffeeMarkets = new ArrayList<>();
     private  ArrayList<CoffeeMarket> coffeeMarkets_copy;
     private ImageButton imageButton;
+    private Button buttonProfile;
+    private Button buttonShops;
+    private String phone;
     
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops);
+
+        phone = getIntent().getStringExtra("phone_number");
 
         coffeeMarkets_copy = initShopsList();
 
@@ -55,6 +60,11 @@ public class ListOfShopsActivity extends AppCompatActivity {
             coffeeMarkets = coffeeMarkets_copy;
         }
 
+        buttonShops = findViewById(R.id.listOfShops);
+        buttonProfile = findViewById(R.id.profile);
+
+        buttonShops.setAlpha(1f);
+        buttonProfile.setAlpha(0.7f);
 
 
         imageButton = (ImageButton) findViewById(R.id.filters);
@@ -66,6 +76,18 @@ public class ListOfShopsActivity extends AppCompatActivity {
             }
         });
 
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //buttonShops.setAlpha(0.7f);
+                //buttonProfile.setAlpha(1f);
+                Intent intentProfile = new Intent(ListOfShopsActivity.this, ProfileActivity.class);
+                intentProfile.putExtra("phone_number", phone);
+                startActivity(intentProfile);
+            }
+        });
+
+
         ListView lv = (ListView) findViewById(R.id.lvMain);
         lv.setAdapter(sadapter);
 
@@ -73,6 +95,7 @@ public class ListOfShopsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ListOfShopsActivity.this, MenuListActivity.class);
+                intent.putExtra("phone_number", phone);
                 startActivity(intent);
             }
         });

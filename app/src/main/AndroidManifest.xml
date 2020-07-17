@@ -12,41 +12,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".ProfileActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".Pop"
-            android:theme="@style/AppTheme.PopMenu">
-
-        </activity>
-
-        <activity android:name=".SmsCodeActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".ListOfShopsActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".MenuListActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".MenuFilterActivity"
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Pop"
+            android:theme="@style/AppTheme.PopMenu" />
+        <activity
+            android:name=".SmsCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListOfShopsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MenuListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MenuFilterActivity"
             android:theme="@style/AppTheme.PopMe" />
 
         <meta-data

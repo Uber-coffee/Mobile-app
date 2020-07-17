@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editPhone;
     Button buttonEnter;
     CheckBox checkBox;
+    String phone;
 
     boolean phoneNumberIsCorrect = false;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (phoneNumberIsCorrect) {
+                        phone = input;
                         tvFail.setVisibility(View.INVISIBLE);
                         tvSuccess.setVisibility(View.VISIBLE);
                         if (checkBox.isChecked()) {
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent smsActivityIntent = new Intent(MainActivity.this, SmsCodeActivity.class);
-
+                smsActivityIntent.putExtra("phone_number", phone);
                 startActivity(smsActivityIntent);
             }
         });

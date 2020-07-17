@@ -1,0 +1,104 @@
+[
+  {
+    "name": "cappuccino",
+    "price": 120,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "coffee",
+        "quantity": 50
+      },
+      {
+        "measure": "GRAM",
+        "name": "milk",
+        "quantity": 50
+      }
+    ],
+    "volume": 0.2
+  },
+  {
+    "name": "cappuccino",
+    "price": 140,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "coffee",
+        "quantity": 50
+      },
+      {
+        "measure": "GRAM",
+        "name": "milk",
+        "quantity": 50
+      }
+    ],
+    "volume": 0.4
+  },
+  {
+    "name": "cappuccino",
+    "price": 150,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "coffee",
+        "quantity": 50
+      },
+      {
+        "measure": "GRAM",
+        "name": "milk",
+        "quantity": 50
+      }
+    ],
+    "volume": 0.5
+  },
+  {
+    "name": "latte",
+    "price": 140,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "coffee",
+        "quantity": 50
+      },
+      {
+        "measure": "GRAM",
+        "name": "milk",
+        "quantity": 50
+      }
+    ],
+    "volume": 0.2
+  },
+  {
+    "name": "latte",
+    "price": 170,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "coffee",
+        "quantity": 50
+      },
+      {
+        "measure": "GRAM",
+        "name": "milk",
+        "quantity": 50
+      }
+    ],
+    "volume": 0.4
+  },
+  {
+    "name": "latte",
+    "price": 190,
+    "recipe": [
+      {
+        "measure": "GRAM",
+        "name": "coffee",
+        "quantity": 50
+      },
+      {
+        "measure": "GRAM",
+        "name": "milk",
+        "quantity": 50
+      }
+    ],
+    "volume": 0.5
+  }
+]
