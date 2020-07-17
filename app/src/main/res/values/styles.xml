@@ -52,4 +52,10 @@
         <item name="android:layout_height">1px</item>
     </style>
 
+    <style name = "AlertDialogTheme" parent = "Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/rounded_textview_background</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorBackground</item>
+        <item name="colorPrimaryDark">@color/colorBackground</item>
+    </style>
 </resources>
