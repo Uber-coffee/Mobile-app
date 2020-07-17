@@ -1,0 +1,38 @@
+[
+  {
+    "tradePoint": {
+      "id": 1,
+      "address": "ул. Попова, 5",
+      "latitude": 39.553521,
+      "longitude": 56.239142,
+      "isActive": true,
+      "users":[]
+    },
+    "time": 3,
+    "distance": 0.308
+  },
+  {
+    "tradePoint": {
+      "id": 3,
+      "address": "ул. Армейская, 18",
+      "latitude": 39.553466,
+      "longitude": 56.239664,
+      "isActive": true,
+      "users":[]
+    },
+    "time": 3,
+    "distance": 0.352
+  },
+  {
+    "tradePoint": {
+      "id": 2,
+      "address": "ул. Попова 12",
+      "latitude": 39.553452,
+      "longitude": 56.239888,
+      "isActive": true,
+      "users":[]
+    },
+    "time": 4,
+    "distance": 0.372
+  }
+]
